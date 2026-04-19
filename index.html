@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Inc — Technology Holding Company</title>
+<meta name="description" content="Prime Inc is a technology holding company building AI infrastructure, DeFi primitives, and intelligent software. Lagos, Nigeria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#02020a;
+  --purple:#7c3aed;
+  --purple-l:#9f5ff0;
+  --purple-d:#5b21b6;
+  --cyan:#00ccff;
+  --white:#ededfa;
+  --green:#10b981;
+  --amber:#f59e0b;
+  --border:rgba(237,237,250,.06);
+  --fh:'Syne',sans-serif;
+  --fb:'Inter',sans-serif;
+  --fm:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:400;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px}
+h1,h2,h3,h4,h5{font-family:var(--fh);font-weight:800;line-height:1.05}
+a{color:inherit;text-decoration:none}
+.container{max-width:1280px;margin:0 auto;padding:0 48px}
+.sec{padding:120px 0}
+
+/* Labels */
+.lbl{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,237,250,.35);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.lbl::before{content:'';width:20px;height:1px;background:var(--purple);flex-shrink:0}
+
+/* Divider */
+hr{border:none;border-top:1px solid var(--border)}
+
+/* Buttons */
+.btn-live{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:var(--white);padding:10px 22px;font-family:var(--fh);font-weight:700;font-size:12px;letter-spacing:-.01em;border:none;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 24px rgba(124,58,237,.4);text-decoration:none}
+.btn-live:hover{background:var(--purple-l);transform:translateY(-2px);box-shadow:0 0 40px rgba(124,58,237,.6)}
+.btn-live::after{content:'↗';font-size:14px}
+.btn-building{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--amber);padding:10px 22px;font-family:var(--fm);font-size:10px;letter-spacing:.06em;border:1px solid rgba(245,158,11,.3);cursor:pointer;transition:border-color .2s,background .2s,color .2s;text-decoration:none;text-transform:uppercase}
+.btn-building:hover{border-color:rgba(245,158,11,.7);background:rgba(245,158,11,.06);color:#fbbf24}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);padding:12px 28px;font-family:var(--fh);font-weight:800;font-size:13px;letter-spacing:-.01em;border:1px solid rgba(237,237,250,.25);cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
+.btn-ghost:hover{border-color:rgba(237,237,250,.6);background:rgba(237,237,250,.05)}
+.btn-solid{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--bg);padding:12px 28px;font-family:var(--fh);font-weight:800;font-size:13px;letter-spacing:-.01em;border:none;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
+.btn-solid:hover{background:rgba(237,237,250,.88);transform:translateY(-2px)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.on,.reveal-l.on,.reveal-r.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:999;height:72px;background:rgba(2,2,10,.85);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:background .3s}
+#nav.scrolled{background:rgba(2,2,10,.97)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{font-family:var(--fh);font-size:17px;letter-spacing:-.02em;color:var(--white)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:13px;font-weight:400;color:rgba(237,237,250,.55);text-decoration:none;transition:color .2s;letter-spacing:-.01em}
+.nav-links a:hover{color:var(--white)}
+.nav-pill{display:flex;align-items:center;gap:7px;padding:5px 13px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.28);border-radius:100px;font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple-l);white-space:nowrap}
+.dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:dpulse 2s ease-in-out infinite}
+@keyframes dpulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(237,237,250,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(237,237,250,.022) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-glow{position:absolute;top:55%;left:50%;transform:translate(-50%,-50%);width:900px;height:700px;background:radial-gradient(ellipse 55% 45% at 50% 55%,rgba(124,58,237,.2) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;text-align:center;padding:0 24px;max-width:1100px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(237,237,250,.04);border:1px solid var(--border);border-radius:100px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,237,250,.45);margin-bottom:40px;animation:fup .8s cubic-bezier(.16,1,.3,1) .1s both}
+.hero-h1{font-size:clamp(68px,11vw,168px);letter-spacing:-.05em;line-height:.92;margin-bottom:28px;animation:fup .8s cubic-bezier(.16,1,.3,1) .2s both}
+.hero-h1 .outline{-webkit-text-stroke:1.5px rgba(237,237,250,.85);color:transparent;display:block}
+.hero-h1 .filled{background:linear-gradient(135deg,var(--purple-l) 0%,var(--purple-d) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.hero-sub{font-size:clamp(15px,1.8vw,20px);font-weight:300;color:rgba(237,237,250,.5);max-width:500px;margin:0 auto 44px;letter-spacing:-.01em;animation:fup .8s cubic-bezier(.16,1,.3,1) .35s both}
+.hero-ctas{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap;animation:fup .8s cubic-bezier(.16,1,.3,1) .5s both}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;animation:fup .8s cubic-bezier(.16,1,.3,1) .85s both}
+.hero-scroll span{font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,237,250,.25)}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--purple),transparent);animation:sbar 2.2s ease-in-out infinite}
+@keyframes sbar{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.9;transform:scaleY(1.15)}}
+@keyframes fup{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TICKER ── */
+.ticker-wrap{padding:18px 0;background:rgba(124,58,237,.055);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%)}
+.ticker-track{display:flex;width:max-content;animation:tick 45s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-item{display:flex;align-items:center;gap:9px;padding:0 44px;white-space:nowrap;font-family:var(--fm);font-size:10px;letter-spacing:.06em;color:rgba(237,237,250,.45)}
+.t-dot-live{width:5px;height:5px;border-radius:50%;background:var(--purple-l);box-shadow:0 0 5px var(--purple-l)}
+.t-dot-build{width:5px;height:5px;border-radius:50%;background:var(--amber)}
+.t-name{color:rgba(237,237,250,.85);font-weight:700}
+.t-status-live{color:var(--purple-l);font-size:8px;letter-spacing:.08em}
+.t-status-build{color:var(--amber);font-size:8px;letter-spacing:.08em}
+.t-sep{color:rgba(237,237,250,.15);font-size:16px;line-height:1}
+
+/* ── COMPANIES ── */
+#companies{padding:120px 0}
+.companies-header{padding:0 48px;max-width:1280px;margin:0 auto 0}
+.co-row{position:relative;padding:64px 48px;border-bottom:1px solid var(--border);overflow:hidden;transition:background .35s}
+.co-row:first-of-type{border-top:1px solid var(--border)}
+.co-row:hover{background:rgba(237,237,250,.012)}
+.co-accent{position:absolute;left:0;top:0;bottom:0;width:3px}
+.co-ghost{position:absolute;right:-24px;top:50%;transform:translateY(-50%);font-family:var(--fh);font-size:clamp(100px,16vw,200px);line-height:1;opacity:.03;pointer-events:none;user-select:none}
+.co-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:72px 260px 1fr 220px;gap:40px;align-items:center;position:relative;z-index:1}
+.co-idx{font-family:var(--fm);font-size:10px;letter-spacing:.12em;color:rgba(237,237,250,.25)}
+.co-name{font-size:clamp(22px,2.6vw,34px);letter-spacing:-.025em;margin-bottom:4px}
+.co-sector{font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.co-status{display:inline-block;padding:3px 10px;border-radius:100px;font-family:var(--fm);font-size:8px;letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor}
+.co-desc{font-size:14px;font-weight:300;color:rgba(237,237,250,.58);line-height:1.75;max-width:520px}
+.co-tags{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.tag{padding:3px 10px;background:rgba(237,237,250,.04);border:1px solid var(--border);font-family:var(--fm);font-size:8px;letter-spacing:.07em;text-transform:uppercase;color:rgba(237,237,250,.38);white-space:nowrap}
+
+/* ── PRODUCTS ── */
+#products{padding:120px 0}
+.prod-table{width:100%;border-collapse:collapse}
+.prod-table th{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(237,237,250,.28);text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);font-weight:400}
+.prod-table td{padding:20px 16px;border-bottom:1px solid rgba(237,237,250,.04);vertical-align:top}
+.prod-table tr:nth-child(even) td{background:rgba(124,58,237,.022)}
+.prod-table tbody tr{transition:background .2s}
+.prod-table tbody tr:hover td{background:rgba(124,58,237,.06)}
+.p-num{font-family:var(--fm);font-size:11px;color:rgba(237,237,250,.22);padding-top:4px}
+.p-badge-live{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(124,58,237,.14);border:1px solid rgba(124,58,237,.3);border-radius:100px;font-family:var(--fm);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-l);margin-bottom:5px}
+.p-badge-build{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:100px;font-family:var(--fm);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:5px}
+.bd{width:4px;height:4px;border-radius:50%;background:currentColor}
+.p-name{font-family:var(--fh);font-size:14px;letter-spacing:-.01em;margin-bottom:2px}
+.p-cat{font-family:var(--fm);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:rgba(237,237,250,.3)}
+.p-cap{font-size:12px;font-weight:300;color:rgba(237,237,250,.65);line-height:1.65}
+.p-rev{font-family:var(--fm);font-size:10px;color:rgba(237,237,250,.4);line-height:1.65}
+
+/* ── AGENTOS BANNER ── */
+.ao-banner{position:relative;padding:88px 48px;background:linear-gradient(135deg,rgba(124,58,237,.13) 0%,rgba(91,33,182,.06) 100%);border-top:1px solid rgba(124,58,237,.18);border-bottom:1px solid rgba(124,58,237,.18);text-align:center;overflow:hidden}
+.ao-banner::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,.1) 0%,transparent 65%);pointer-events:none}
+.ao-banner-lbl{font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-l);margin-bottom:16px}
+.ao-banner h2{font-size:clamp(36px,5vw,76px);letter-spacing:-.04em;margin-bottom:16px}
+.ao-banner p{font-size:16px;font-weight:300;color:rgba(237,237,250,.55);max-width:560px;margin:0 auto 32px;line-height:1.75}
+
+/* ── VISION ── */
+#vision{padding:120px 0}
+.vis-stmt{font-size:clamp(30px,4.5vw,62px);letter-spacing:-.035em;line-height:1.12;max-width:860px;margin-bottom:80px}
+.vis-stmt em{font-style:normal;-webkit-text-stroke:1px rgba(237,237,250,.35);color:transparent}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border)}
+.pillar{padding:36px 28px;border-right:1px solid var(--border);transition:background .3s}
+.pillar:last-child{border-right:none}
+.pillar:hover{background:rgba(124,58,237,.04)}
+.pillar-n{font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:var(--purple-l);margin-bottom:14px}
+.pillar h4{font-size:16px;letter-spacing:-.015em;margin-bottom:10px}
+.pillar p{font-size:12px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.7}
+
+/* ── REVENUE ── */
+#revenue{padding:120px 0}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border)}
+.rev-cell{padding:44px 36px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .3s}
+.rev-cell:nth-child(3n){border-right:none}
+.rev-cell:nth-child(n+4){border-bottom:none}
+.rev-cell:hover{background:rgba(124,58,237,.035)}
+.rev-n{font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(237,237,250,.22);margin-bottom:14px}
+.rev-name{font-family:var(--fh);font-size:19px;letter-spacing:-.02em;margin-bottom:6px}
+.rev-sub{font-family:var(--fm);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-l);margin-bottom:10px}
+.rev-desc{font-size:12px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.7}
+
+/* ── PRIME PAY ── */
+#primepay{padding:120px 0}
+.pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start}
+.pp-layers{display:flex;flex-direction:column;gap:0}
+.pp-layer{padding:22px 0 22px 22px;border-left:2px solid var(--border);position:relative;transition:border-color .25s}
+.pp-layer:hover{border-color:var(--cyan)}
+.pp-layer::before{content:'';position:absolute;left:-5px;top:26px;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--border);transition:border-color .25s,box-shadow .25s}
+.pp-layer:hover::before{border-color:var(--cyan);box-shadow:0 0 8px rgba(0,204,255,.4)}
+.pp-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
+.pp-title{font-family:var(--fh);font-size:16px;letter-spacing:-.015em;margin-bottom:5px}
+.pp-desc{font-size:12px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.65}
+.comp-head-row{display:grid;grid-template-columns:110px 1fr 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
+.comp-hcell{font-family:var(--fm);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,237,250,.28)}
+.comp-row{display:grid;grid-template-columns:110px 1fr 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(237,237,250,.04);align-items:center}
+.comp-name{font-family:var(--fm);font-size:11px;font-weight:700}
+.comp-cell{font-size:12px;font-weight:300;color:rgba(237,237,250,.55);display:flex;align-items:center;gap:6px}
+.ck{color:var(--cyan)}.cx{color:rgba(237,237,250,.2)}
+.pp-highlight{padding:20px 22px;background:rgba(0,204,255,.04);border:1px solid rgba(0,204,255,.1);margin-top:20px}
+.pp-highlight-lbl{font-family:var(--fm);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.pp-highlight p{font-size:13px;font-weight:300;color:rgba(237,237,250,.65);line-height:1.7}
+
+/* ── FFP ── */
+#ffp{padding:120px 0;background:rgba(124,58,237,.025);position:relative;overflow:hidden}
+.ffp-rings{position:absolute;top:50%;right:8%;transform:translateY(-50%);width:480px;height:480px;pointer-events:none}
+.ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(124,58,237,.5);animation:rpulse 4s ease-out infinite}
+.ring-1{width:70px;height:70px;animation-delay:0s}
+.ring-2{width:70px;height:70px;animation-delay:.8s}
+.ring-3{width:70px;height:70px;animation-delay:1.6s}
+.ring-4{width:70px;height:70px;animation-delay:2.4s}
+.ring-5{width:70px;height:70px;animation-delay:3.2s}
+@keyframes rpulse{0%{transform:translate(-50%,-50%) scale(1);opacity:.65}100%{transform:translate(-50%,-50%) scale(7);opacity:0}}
+.ffp-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;position:relative;z-index:1}
+.ffp-token{font-size:clamp(48px,7vw,100px);letter-spacing:-.045em;background:linear-gradient(135deg,var(--purple-l),var(--purple-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.ffp-supply{font-family:var(--fm);font-size:11px;color:rgba(237,237,250,.4);letter-spacing:.06em;margin-bottom:20px}
+.ffp-body{font-size:14px;font-weight:300;color:rgba(237,237,250,.58);line-height:1.75;max-width:420px;margin-bottom:28px}
+.earn-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.earn-list li{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:300;color:rgba(237,237,250,.65)}
+.earn-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--purple-l);flex-shrink:0}
+.dist-rows{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.dist-row{display:grid;grid-template-columns:52px 1fr 150px;gap:14px;align-items:center}
+.dist-pct{font-family:var(--fm);font-size:18px;font-weight:700;color:var(--purple-l)}
+.dist-bar-bg{height:2px;background:rgba(237,237,250,.06);border-radius:1px;overflow:hidden}
+.dist-bar{height:100%;background:linear-gradient(to right,var(--purple),var(--purple-l));border-radius:1px}
+.dist-label{font-size:12px;font-weight:300;color:rgba(237,237,250,.5);text-align:right}
+
+/* ── FOUNDER ── */
+#founder{padding:120px 0}
+.founder-grid{display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start}
+.founder-card{position:sticky;top:100px;padding:36px;background:rgba(237,237,250,.02);border:1px solid var(--border)}
+.f-avatar{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--purple-l),var(--purple-d));display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:26px;margin-bottom:18px}
+.f-name{font-size:26px;letter-spacing:-.025em;margin-bottom:3px}
+.f-role{font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,237,250,.38);margin-bottom:18px}
+.f-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.f-tag{padding:3px 9px;background:rgba(237,237,250,.04);border:1px solid var(--border);font-family:var(--fm);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:rgba(237,237,250,.38)}
+.f-quote{font-size:13px;font-weight:300;font-style:italic;color:rgba(237,237,250,.65);line-height:1.75;border-left:2px solid var(--purple);padding-left:14px;margin-bottom:24px}
+.f-links{display:flex;gap:10px}
+.f-link{display:flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(237,237,250,.04);border:1px solid var(--border);font-family:var(--fm);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:rgba(237,237,250,.5);transition:background .2s,color .2s,border-color .2s}
+.f-link:hover{background:rgba(237,237,250,.08);color:var(--white);border-color:rgba(237,237,250,.2)}
+.f-blocks{display:flex;flex-direction:column;gap:56px}
+.f-blk-lbl{font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--purple-l);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.f-blk-lbl::before{content:'';width:18px;height:1px;background:var(--purple)}
+.f-blk h3{font-size:clamp(22px,2.8vw,34px);letter-spacing:-.025em;margin-bottom:14px}
+.f-blk p{font-size:14px;font-weight:300;color:rgba(237,237,250,.6);line-height:1.8}
+
+/* ── CTA ── */
+#cta{background:var(--purple);padding:120px 0;text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(159,95,240,.35) 0%,transparent 55%),linear-gradient(315deg,rgba(91,33,182,.35) 0%,transparent 55%)}
+.cta-inner{position:relative;z-index:1}
+.cta-lbl{font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,237,250,.55);margin-bottom:20px}
+.cta-h{font-size:clamp(48px,8vw,120px);letter-spacing:-.05em;color:var(--white);margin-bottom:16px}
+.cta-sub{font-size:17px;font-weight:300;color:rgba(237,237,250,.65);margin-bottom:44px}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-cta-p{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--purple-d);padding:15px 34px;font-family:var(--fh);font-weight:800;font-size:13px;letter-spacing:-.01em;border:none;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none}
+.btn-cta-p:hover{background:rgba(237,237,250,.9);transform:translateY(-2px)}
+.btn-cta-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);padding:15px 34px;font-family:var(--fh);font-weight:800;font-size:13px;letter-spacing:-.01em;border:2px solid rgba(237,237,250,.38);cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
+.btn-cta-o:hover{border-color:var(--white);background:rgba(237,237,250,.08)}
+
+/* ── FOOTER ── */
+footer{padding:80px 0 40px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:56px;margin-bottom:56px}
+.footer-brand-txt{font-family:var(--fh);font-size:15px;letter-spacing:-.015em}
+.footer-tag{font-size:12px;font-weight:300;color:rgba(237,237,250,.38);line-height:1.7;max-width:240px;margin-top:12px}
+.footer-col h5{font-family:var(--fm);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,237,250,.28);margin-bottom:14px;font-weight:400}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.footer-col a{font-size:12px;font-weight:300;color:rgba(237,237,250,.45);transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-btm{display:flex;align-items:center;justify-content:space-between;padding-top:28px;border-top:1px solid var(--border)}
+.footer-copy,.footer-loc{font-family:var(--fm);font-size:9px;letter-spacing:.06em;color:rgba(237,237,250,.22)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .co-grid{grid-template-columns:60px 200px 1fr}
+  .co-tags{display:none}
+  .pp-grid{grid-template-columns:1fr;gap:60px}
+  .ffp-grid{grid-template-columns:1fr}
+  .ffp-rings{display:none}
+  .founder-grid{grid-template-columns:1fr}
+  .founder-card{position:relative;top:0}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .pillars{grid-template-columns:1fr 1fr}
+  .pillar:nth-child(2){border-right:none}
+  .pillar:not(:last-child){border-bottom:1px solid var(--border)}
+  .pillar:last-child{border-right:none;border-bottom:none}
+  .rev-grid{grid-template-columns:1fr 1fr}
+  .rev-cell:nth-child(3n){border-right:1px solid var(--border)}
+  .rev-cell:nth-child(2n){border-right:none}
+  .rev-cell:nth-child(n+5){border-bottom:none}
+}
+@media(max-width:768px){
+  .container{padding:0 24px}
+  .sec{padding:80px 0}
+  .nav-links{display:none}
+  .co-grid{grid-template-columns:1fr}
+  .co-row{padding:48px 24px 48px 32px}
+  .companies-header{padding:0 24px}
+  .prod-table th:nth-child(3),.prod-table td:nth-child(3),.prod-table th:nth-child(4),.prod-table td:nth-child(4){display:none}
+  .pillars{grid-template-columns:1fr;border:none;display:flex;flex-direction:column}
+  .pillar{border:1px solid var(--border);margin-bottom:-1px}
+  .rev-grid{grid-template-columns:1fr;border:none;display:flex;flex-direction:column}
+  .rev-cell{border:1px solid var(--border) !important;margin-bottom:-1px}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer-btm{flex-direction:column;gap:10px;text-align:center}
+  .ao-banner{padding:64px 24px}
+  .ffp-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 7px rgba(159,95,240,.55))">
+        <defs>
+          <linearGradient id="nlg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9f5ff0"/>
+            <stop offset="100%" stop-color="#5b21b6"/>
+          </linearGradient>
+        </defs>
+        <path d="M6 4h14c5.523 0 10 4.477 10 10s-4.477 10-10 10H12v8H6V4z" fill="url(#nlg)"/>
+        <path d="M16 10v6l-3 5h8l-3-5v-6h-2z" fill="#02020a" opacity=".88"/>
+        <circle cx="18" cy="21.5" r="1.1" fill="#9f5ff0"/>
+      </svg>
+      <span class="nav-logo-txt">Prime Inc</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#companies">Companies</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#primepay">Prime Pay</a></li>
+      <li><a href="#ffp">FFP</a></li>
+      <li><a href="#founder">Founder</a></li>
+    </ul>
+    <div class="nav-pill">
+      <span class="dot-pulse"></span>
+      3 Products Live
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>
+      Technology Holding Company &nbsp;·&nbsp; Lagos, Nigeria
+    </div>
+    <h1 class="hero-h1">
+      <span class="outline">PRIME</span>
+      <span class="filled">INC</span>
+    </h1>
+    <p class="hero-sub">Building the infrastructure layer that the AI-native economy runs on. Everything else is proof that it works.</p>
+    <div class="hero-ctas">
+      <a href="https://agentos-app.vercel.app" class="btn-live" target="_blank" rel="noopener" style="font-size:13px;padding:13px 26px">Launch AgentOS</a>
+      <a href="#companies" class="btn-ghost">Our Companies</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker">
+    <div class="t-item"><span class="t-dot-live"></span><span class="t-name">AgentOS</span><span class="t-status-live">LIVE</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-live"></span><span class="t-name">deZypher</span><span class="t-status-live">LIVE</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-live"></span><span class="t-name">SiloPerps</span><span class="t-status-live">LIVE</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Clique</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Argus</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Derek</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Mezzy</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Prime Pay</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">FFP</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <!-- duplicate for loop -->
+    <div class="t-item"><span class="t-dot-live"></span><span class="t-name">AgentOS</span><span class="t-status-live">LIVE</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-live"></span><span class="t-name">deZypher</span><span class="t-status-live">LIVE</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-live"></span><span class="t-name">SiloPerps</span><span class="t-status-live">LIVE</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Clique</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Argus</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Derek</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Mezzy</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">Prime Pay</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+    <div class="t-item"><span class="t-dot-build"></span><span class="t-name">FFP</span><span class="t-status-build">BUILDING</span><span class="t-sep">·</span></div>
+  </div>
+</div>
+
+<!-- COMPANIES -->
+<section id="companies">
+  <div class="companies-header">
+    <div class="lbl reveal">01 — Companies</div>
+    <h2 style="font-size:clamp(30px,4vw,52px);letter-spacing:-.03em;margin-bottom:64px;max-width:520px" class="reveal d1">Three companies.<br>One infrastructure stack.</h2>
+  </div>
+
+  <div class="co-row reveal">
+    <div class="co-accent" style="background:#9f5ff0"></div>
+    <div class="co-ghost" style="color:#9f5ff0">01</div>
+    <div class="co-grid">
+      <div class="co-idx">01</div>
+      <div>
+        <div class="co-name">Prime Labs</div>
+        <div class="co-sector" style="color:#9f5ff0">AI &amp; Technology</div>
+        <span class="co-status" style="color:#9f5ff0;background:rgba(159,95,240,.08)">3 products live</span>
+      </div>
+      <div class="co-desc">AI and technology arm. Designs and ships AI-first software — autonomous agent infrastructure, DeFi analytics, verified communities, AI security, and the coordination protocol beneath all of it. AgentOS is an open platform: any developer or company in the world can build on it. Prime Labs products are the first builders on the stack — not the only ones.</div>
+      <div class="co-tags">
+        <span class="tag">AgentOS</span><span class="tag">deZypher</span><span class="tag">SiloPerps</span>
+        <span class="tag">Clique</span><span class="tag">Derek</span><span class="tag">Mezzy</span>
+        <span class="tag">Argus</span><span class="tag">FFP</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="co-row reveal">
+    <div class="co-accent" style="background:#10b981"></div>
+    <div class="co-ghost" style="color:#10b981">02</div>
+    <div class="co-grid">
+      <div class="co-idx">02</div>
+      <div>
+        <div class="co-name">Prime Pay</div>
+        <div class="co-sector" style="color:#10b981">Payment Infrastructure</div>
+        <span class="co-status" style="color:#10b981;background:rgba(16,185,129,.08)">In development</span>
+      </div>
+      <div class="co-desc">Universal payment protocol for humans and AI agents. Designed with emerging markets as the primary constraint. USSD on any GSM phone. API for agents on any chain. One Prime Wallet, one PIN, online or offline.</div>
+      <div class="co-tags">
+        <span class="tag">USSD</span><span class="tag">Agent API</span>
+        <span class="tag">Prime Bridge</span><span class="tag">FFP Phase 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="co-row reveal">
+    <div class="co-accent" style="background:#f59e0b"></div>
+    <div class="co-ghost" style="color:#f59e0b">03</div>
+    <div class="co-grid">
+      <div class="co-idx">03</div>
+      <div>
+        <div class="co-name">Prime Gadgets</div>
+        <div class="co-sector" style="color:#f59e0b">Hardware &amp; Energy</div>
+        <span class="co-status" style="color:#f59e0b;background:rgba(245,158,11,.08)">Registered &amp; operational</span>
+      </div>
+      <div class="co-desc">Solar energy products and hardware distribution across Nigeria. Bridges the power gap that constrains digital adoption in emerging markets. Reliable power is the physical foundation everything else Prime Inc builds depends on.</div>
+      <div class="co-tags">
+        <span class="tag">Solar</span><span class="tag">Hardware</span><span class="tag">Nigeria</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="sec">
+  <div class="container">
+    <div class="lbl reveal">02 — Products</div>
+    <h2 style="font-size:clamp(30px,4vw,52px);letter-spacing:-.03em;margin-bottom:48px" class="reveal d1">Eight products.<br>One coherent stack.</h2>
+    <div class="reveal d2" style="overflow-x:auto">
+    <table class="prod-table">
+      <thead>
+        <tr>
+          <th style="width:44px">#</th>
+          <th style="width:180px">Product</th>
+          <th>Key Capability</th>
+          <th style="width:160px">Revenue Model</th>
+          <th style="width:170px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-num">01</td>
+          <td><div class="p-badge-live"><span class="bd"></span>Live</div><div class="p-name">AgentOS</div><div class="p-cat">AI Agent Infrastructure</div></td>
+          <td class="p-cap">32 primitives across 6 namespaces (net, mem, db, proc, events, fs). Universal POST /mcp router. NL Studio. Skill marketplace with security scoring. SDK kernel. v6 "Fabric" adds three-tier memory, eval harness, workspace layer, pay primitive.</td>
+          <td class="p-rev">Marketplace fees<br>Enterprise licensing</td>
+          <td><a href="https://agentos-app.vercel.app" class="btn-live" target="_blank" rel="noopener">Launch AgentOS</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">02</td>
+          <td><div class="p-badge-live"><span class="bd"></span>Live</div><div class="p-name">deZypher</div><div class="p-cat">DEX Analytics</div></td>
+          <td class="p-cap">FurgeScore ranks tokens on on-chain signals (volume, liquidity depth, holder distribution, momentum) AND social signals via Narrative Mapper + Echo Mapper agents. Dual-Agent Failover Architecture. No paid promotions, ever.</td>
+          <td class="p-rev">Premium subscriptions</td>
+          <td><a href="https://dezypher.vercel.app" class="btn-live" target="_blank" rel="noopener">Open deZypher</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">03</td>
+          <td><div class="p-badge-live"><span class="bd"></span>Live</div><div class="p-name">SiloPerps</div><div class="p-cat">Perp DEX · Monad</div></td>
+          <td class="p-cap">Fee-to-buyback-burn $SILO tokenomics. Permissionless market creation. Live on Monad. One of only two purely blockchain products in Prime Inc.</td>
+          <td class="p-rev">Trading fees<br>Protocol revenue</td>
+          <td><a href="https://siloperps.vercel.app" class="btn-live" target="_blank" rel="noopener">Trade on SiloPerps</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">04</td>
+          <td><div class="p-badge-build"><span class="bd"></span>Building</div><div class="p-name">Clique</div><div class="p-cat">Verified Community</div></td>
+          <td class="p-cap">Mandatory real-identity verification via Persona API. 7 internal agents (Curator, Sentinel, Herald, Scout, Oracle, Scribe, Arbiter) built on AgentOS SDK kernel — not marketplace skills. Three-tier badge system. Clique ID portable identity. 0% tipping fee at launch.</td>
+          <td class="p-rev">Community API subscriptions<br>Operator plans</td>
+          <td><a href="#" class="btn-building">Join Waitlist</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">05</td>
+          <td><div class="p-badge-build"><span class="bd"></span>Building</div><div class="p-name">Argus</div><div class="p-cat">AI Security</div></td>
+          <td class="p-cap">Cloud-first. 7 specialist agents + Recovery Agent. Image Intelligence: face capture → reverse image search → face recognition → satellite match → social OSINT → attribution dossier. Isolated Supabase infrastructure separate from all other Prime Labs systems.</td>
+          <td class="p-rev">SaaS security subscriptions</td>
+          <td><a href="#" class="btn-building">Join Waitlist</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">06</td>
+          <td><div class="p-badge-build"><span class="bd"></span>Building</div><div class="p-name">Derek</div><div class="p-cat">Autonomous Trading</div></td>
+          <td class="p-cap">Three layers: perception (monitors X handles + on-chain for signals), judgment (confidence scoring model gates all execution), execution (Base, Solana, SiloPerps). 792,000 TokenSignal rows already ingested and indexed.</td>
+          <td class="p-rev">Performance fees<br>Licensing</td>
+          <td><a href="#" class="btn-building">Join Waitlist</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">07</td>
+          <td><div class="p-badge-build"><span class="bd"></span>Building</div><div class="p-name">Mezzy</div><div class="p-cat">AI Social Media</div></td>
+          <td class="p-cap">5 agents: Listener, Writer, Reviewer, Scheduler, Analytics. Operator accounts for agencies. Multi-platform. Built on AgentOS SDK. Brand voice configuration per account.</td>
+          <td class="p-rev">Operator subscriptions</td>
+          <td><a href="#" class="btn-building">Join Waitlist</a></td>
+        </tr>
+        <tr>
+          <td class="p-num">08</td>
+          <td><div class="p-badge-build"><span class="bd"></span>Building</div><div class="p-name">Prime Pay</div><div class="p-cat">Payment Protocol</div></td>
+          <td class="p-cap">USSD via Africa's Talking. Phone number is private routing key — never on-chain. Seed phrase across 2 USSD screens, never SMS. Same wallet/PIN/balance on USSD + app + agent API. 3 transfer methods: phone number, wallet address, Prime Tag. Prime Bridge at 0.1% flat fee.</td>
+          <td class="p-rev">0.1% bridge fee<br>Protocol volume</td>
+          <td><a href="#" class="btn-building">Join Waitlist</a></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTOS BANNER -->
+<div class="ao-banner">
+  <div class="ao-banner-lbl">Open Platform</div>
+  <h2 class="reveal">AgentOS is open.</h2>
+  <p class="reveal d1">Any developer or company in the world can build on AgentOS. Prime Labs products are the first builders on the stack — not the only ones. The protocol belongs to the ecosystem.</p>
+  <a href="https://agentos-app.vercel.app" class="btn-live reveal d2" target="_blank" rel="noopener" style="font-size:13px;padding:13px 26px">Start Building on AgentOS</a>
+</div>
+
+<!-- VISION -->
+<section id="vision" class="sec">
+  <div class="container">
+    <div class="lbl reveal">03 — Vision</div>
+    <h2 class="vis-stmt reveal d1">
+      Not building apps.<br>
+      Building the <em>infrastructure</em><br>
+      the AI economy runs on.
+    </h2>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-n">01</div>
+        <h4>Infrastructure First</h4>
+        <p>Build the layer others build on, not another application. Every Prime Inc product proves the stack works and simultaneously strengthens it.</p>
+      </div>
+      <div class="pillar reveal d1">
+        <div class="pillar-n">02</div>
+        <h4>Emerging Markets as Constraint</h4>
+        <p>Design for Lagos. Intermittent power. Variable connectivity. Cost-conscious users. That's not a disadvantage — it's the most honest product environment on earth.</p>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="pillar-n">03</div>
+        <h4>AI-Native Architecture</h4>
+        <p>Agents aren't a feature. They're the architecture. AgentOS is the coordination layer. Every product in Prime Inc is an agent-first system.</p>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="pillar-n">04</div>
+        <h4>Open by Default</h4>
+        <p>The AgentOS skill marketplace, MCP router, and SDK kernel are all open to any builder. The ecosystem wins together, or not at all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section id="revenue" class="sec">
+  <div class="container">
+    <div class="lbl reveal">04 — Revenue</div>
+    <h2 style="font-size:clamp(30px,4vw,52px);letter-spacing:-.03em;margin-bottom:64px" class="reveal d1">Six revenue streams.<br>Across three companies.</h2>
+    <div class="rev-grid">
+      <div class="rev-cell reveal">
+        <div class="rev-n">01</div>
+        <div class="rev-name">AgentOS Marketplace</div>
+        <div class="rev-sub">Prime Labs</div>
+        <div class="rev-desc">Skill listing fees and revenue share on paid skills transacted through the AgentOS marketplace. Scales with ecosystem developer adoption.</div>
+      </div>
+      <div class="rev-cell reveal d1">
+        <div class="rev-n">02</div>
+        <div class="rev-name">AgentOS Enterprise</div>
+        <div class="rev-sub">Prime Labs</div>
+        <div class="rev-desc">Self-hosted licensing and support contracts for organizations running AgentOS infrastructure at scale behind their own perimeter.</div>
+      </div>
+      <div class="rev-cell reveal d2">
+        <div class="rev-n">03</div>
+        <div class="rev-name">deZypher Intelligence</div>
+        <div class="rev-sub">Prime Labs</div>
+        <div class="rev-desc">Premium subscription tiers for FurgeScore, Narrative Mapper, and advanced DeFi analytics. No paid promotion slots — signal integrity is the product.</div>
+      </div>
+      <div class="rev-cell reveal d3">
+        <div class="rev-n">04</div>
+        <div class="rev-name">SiloPerps Protocol</div>
+        <div class="rev-sub">Prime Labs</div>
+        <div class="rev-desc">Trading fees on perpetual contracts. Fee-to-buyback-burn $SILO mechanism aligns protocol revenue with long-term token value.</div>
+      </div>
+      <div class="rev-cell reveal d4">
+        <div class="rev-n">05</div>
+        <div class="rev-name">Prime Bridge Fee</div>
+        <div class="rev-sub">Prime Pay</div>
+        <div class="rev-desc">0.1% flat fee on every cross-chain transfer. No tiers, no hidden costs. Phase 1: Solana, Base, ETH, Monad. Phase 2: native FFP settlement.</div>
+      </div>
+      <div class="rev-cell reveal d5">
+        <div class="rev-n">06</div>
+        <div class="rev-name">Hardware Sales</div>
+        <div class="rev-sub">Prime Gadgets</div>
+        <div class="rev-desc">Solar energy products and hardware distribution margins across Nigeria. The physical power infrastructure that digital adoption in emerging markets depends on.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIME PAY -->
+<section id="primepay" class="sec">
+  <div class="container">
+    <div class="lbl reveal">05 — Prime Pay</div>
+    <h2 style="font-size:clamp(30px,4vw,52px);letter-spacing:-.03em;margin-bottom:12px" class="reveal d1">One wallet. Every surface.</h2>
+    <p style="font-size:15px;font-weight:300;color:rgba(237,237,250,.5);margin-bottom:60px;max-width:460px" class="reveal d2">Same wallet. Same PIN. Same balance. USSD, app, or agent API — it's all Prime Pay.</p>
+    <div class="pp-grid">
+      <div class="reveal-l">
+        <div class="lbl" style="margin-bottom:28px">Protocol Layers</div>
+        <div class="pp-layers">
+          <div class="pp-layer">
+            <div class="pp-lbl">Layer 1</div>
+            <div class="pp-title">USSD Gateway</div>
+            <div class="pp-desc">Via Africa's Talking. Any GSM phone, any network. Phone number is a private routing key — never on-chain. Seed phrase split across 2 USSD screens, never transmitted via SMS.</div>
+          </div>
+          <div class="pp-layer">
+            <div class="pp-lbl">Layer 2</div>
+            <div class="pp-title">Prime App</div>
+            <div class="pp-desc">Same wallet, same PIN, same balance as USSD. 3 transfer methods: phone number, wallet address, Prime Tag.</div>
+          </div>
+          <div class="pp-layer">
+            <div class="pp-lbl">Layer 3</div>
+            <div class="pp-title">Agent API</div>
+            <div class="pp-desc">Payment primitives for AI agents on any supported chain. Programmable transfers, agent-initiated settlements, machine-to-machine payments at protocol speed.</div>
+          </div>
+          <div class="pp-layer">
+            <div class="pp-lbl">Phase 2</div>
+            <div class="pp-title">FFP Native Settlement</div>
+            <div class="pp-desc">Phase 1 covers Solana, Base, ETH, and Monad via Prime Bridge at 0.1% flat. Phase 2 removes the bridge — native settlement directly on FFP.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="lbl" style="margin-bottom:28px">Competitive Position</div>
+        <div class="comp-head-row">
+          <span class="comp-hcell">Protocol</span>
+          <span class="comp-hcell">USSD / Offline</span>
+          <span class="comp-hcell">Agent-Native API</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-name" style="color:var(--cyan)">Prime Pay</span>
+          <span class="comp-cell"><span class="ck">✓</span> Any GSM phone</span>
+          <span class="comp-cell"><span class="ck">✓</span> Multi-chain</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-name">x402</span>
+          <span class="comp-cell"><span class="cx">✗</span> Internet required</span>
+          <span class="comp-cell"><span class="ck">✓</span> HTTP native</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-name">Google Pay</span>
+          <span class="comp-cell"><span class="cx">✗</span> Smartphone only</span>
+          <span class="comp-cell"><span class="cx">✗</span> No agent API</span>
+        </div>
+        <div class="comp-row">
+          <span class="comp-name">Stripe</span>
+          <span class="comp-cell"><span class="cx">✗</span> Cards required</span>
+          <span class="comp-cell"><span class="cx">✗</span> Fiat rails only</span>
+        </div>
+        <div class="pp-highlight">
+          <div class="pp-highlight-lbl">Prime Bridge</div>
+          <p>0.1% flat fee. No tiers. No hidden costs. The same rate whether you're sending $1 or $10,000. Cross-chain settlement across Solana, Base, ETH, and Monad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FFP -->
+<section id="ffp">
+  <div class="ffp-rings">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+    <div class="ring ring-4"></div>
+    <div class="ring ring-5"></div>
+  </div>
+  <div class="container">
+    <div class="ffp-grid">
+      <div>
+        <div class="lbl reveal">06 — FFP Protocol</div>
+        <div class="ffp-token reveal d1">$FURGE</div>
+        <div class="ffp-supply reveal d2">150,000,000 · Hard Cap · No Inflation · No Public Sale</div>
+        <p class="ffp-body reveal d3">The coordination token for FFP — the protocol layer that Prime Pay and the broader Prime Inc ecosystem settles on. Earned through contribution, not purchased.</p>
+        <div class="lbl reveal d4" style="margin-bottom:14px">How to Earn</div>
+        <ul class="earn-list reveal d5">
+          <li>Validator staking on the FFP network</li>
+          <li>Launching a new chain on FFP</li>
+          <li>Verified community contribution</li>
+        </ul>
+      </div>
+      <div>
+        <div class="lbl reveal">Token Distribution</div>
+        <div class="dist-rows reveal d1">
+          <div class="dist-row">
+            <div class="dist-pct">40%</div>
+            <div class="dist-bar-bg"><div class="dist-bar" style="width:100%"></div></div>
+            <div class="dist-label">Ecosystem / Treasury</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-pct">25%</div>
+            <div class="dist-bar-bg"><div class="dist-bar" style="width:62.5%"></div></div>
+            <div class="dist-label">Initial Validators</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-pct">20%</div>
+            <div class="dist-bar-bg"><div class="dist-bar" style="width:50%"></div></div>
+            <div class="dist-label">Team (4yr vest)</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-pct">10%</div>
+            <div class="dist-bar-bg"><div class="dist-bar" style="width:25%"></div></div>
+            <div class="dist-label">Community Airdrop</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-pct" style="font-size:15px">5%</div>
+            <div class="dist-bar-bg"><div class="dist-bar" style="width:12.5%"></div></div>
+            <div class="dist-label">Liquidity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder" class="sec">
+  <div class="container">
+    <div class="lbl reveal">07 — Founder</div>
+    <div class="founder-grid">
+      <div class="founder-card reveal">
+        <div class="f-avatar">R</div>
+        <div class="f-name">Riz</div>
+        <div class="f-role">Founder &amp; CEO · Prime Inc</div>
+        <div class="f-tags">
+          <span class="f-tag">Lagos, Nigeria</span>
+          <span class="f-tag">Solo Founder</span>
+          <span class="f-tag">Bootstrapped</span>
+          <span class="f-tag">No outside capital</span>
+        </div>
+        <blockquote class="f-quote">"I'm not building apps. I'm building the infrastructure layer that the AI-native economy runs on. Everything else is just proof that it works."</blockquote>
+        <div class="f-links">
+          <a href="https://github.com/chrizzy-x" class="f-link" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="#" class="f-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Twitter
+          </a>
+        </div>
+      </div>
+      <div class="f-blocks">
+        <div class="f-blk reveal d1">
+          <div class="f-blk-lbl">The Story</div>
+          <h3>From Lagos, building global infrastructure.</h3>
+          <p>Prime Inc started with a question: why does AI infrastructure assume you have reliable power, a stable internet connection, and a bank account? Nobody building infrastructure was building from Lagos. So Riz decided to. Bootstrapped, solo, no outside capital — every product ships because the work demands it, not because a funding round did.</p>
+        </div>
+        <div class="f-blk reveal d2">
+          <div class="f-blk-lbl">Why Lagos</div>
+          <h3>The world's most honest product environment.</h3>
+          <p>Lagos is one of the most competitive, resource-constrained, high-velocity cities on earth. Intermittent power means Prime Gadgets exists. Variable connectivity means Prime Pay's USSD layer exists. Cost-conscious, technically sophisticated users mean every product has to be genuinely useful, not just well-designed. Building here forces honesty that a comfortable environment never would.</p>
+        </div>
+        <div class="f-blk reveal d3">
+          <div class="f-blk-lbl">The Conviction</div>
+          <h3>The AI-native economy needs new primitives.</h3>
+          <p>The next decade doesn't need more AI wrappers on top of 2010s SaaS. It needs real primitives — agent coordination protocols, verified digital identity, permissionless financial infrastructure, and payment rails that work for both humans and machines. AgentOS is the agent layer. FFP is the settlement layer. Prime Pay is the access layer. The goal isn't to compete with Silicon Valley. The goal is to build the stack that makes the next generation of companies possible — from anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-lbl reveal">Start Building</div>
+      <h2 class="cta-h reveal d1">Build on Prime.</h2>
+      <p class="cta-sub reveal d2">Three live products. Eight total. One coherent infrastructure stack.</p>
+      <div class="cta-btns reveal d3">
+        <a href="https://agentos-app.vercel.app" class="btn-cta-p" target="_blank" rel="noopener">Launch AgentOS ↗</a>
+        <a href="#products" class="btn-cta-o">View All Products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+          <svg width="26" height="26" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="flg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9f5ff0"/><stop offset="100%" stop-color="#5b21b6"/></linearGradient></defs>
+            <path d="M6 4h14c5.523 0 10 4.477 10 10s-4.477 10-10 10H12v8H6V4z" fill="url(#flg)"/>
+            <path d="M16 10v6l-3 5h8l-3-5v-6h-2z" fill="#02020a" opacity=".88"/>
+            <circle cx="18" cy="21.5" r="1.1" fill="#9f5ff0"/>
+          </svg>
+          <span class="footer-brand-txt">Prime Inc</span>
+        </div>
+        <p class="footer-tag">Building the infrastructure layer that the AI-native economy runs on. Lagos, Nigeria.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="https://agentos-app.vercel.app" target="_blank" rel="noopener">AgentOS</a></li>
+          <li><a href="https://dezypher.vercel.app" target="_blank" rel="noopener">deZypher</a></li>
+          <li><a href="https://siloperps.vercel.app" target="_blank" rel="noopener">SiloPerps</a></li>
+          <li><a href="#">Clique</a></li>
+          <li><a href="#">Argus</a></li>
+          <li><a href="#">Derek</a></li>
+          <li><a href="#">Mezzy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Companies</h5>
+        <ul>
+          <li><a href="#companies">Prime Labs</a></li>
+          <li><a href="#primepay">Prime Pay</a></li>
+          <li><a href="#companies">Prime Gadgets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Protocol</h5>
+        <ul>
+          <li><a href="#ffp">FFP Protocol</a></li>
+          <li><a href="#ffp">$FURGE</a></li>
+          <li><a href="#primepay">Prime Bridge</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Links</h5>
+        <ul>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="https://github.com/chrizzy-x" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-btm">
+      <span class="footer-copy">© 2026 Prime Inc. All rights reserved.</span>
+      <span class="footer-loc">Lagos, Nigeria · Bootstrapped · No outside capital</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => io.observe(el));
+
+// Canvas particles
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [], raf;
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  function init() {
+    stars = Array.from({ length: 80 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - .5) * .22,
+      vy: (Math.random() - .5) * .22,
+      r: Math.random() * 1.1 + .3,
+      o: Math.random() * .35 + .15
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      s.x += s.vx; s.y += s.vy;
+      if (s.x < 0) s.x = canvas.width;
+      else if (s.x > canvas.width) s.x = 0;
+      if (s.y < 0) s.y = canvas.height;
+      else if (s.y > canvas.height) s.y = 0;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(237,237,250,${s.o})`;
+      ctx.fill();
+    }
+    for (let i = 0; i < stars.length; i++) {
+      for (let j = i + 1; j < stars.length; j++) {
+        const a = stars[i], b = stars[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 115) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(124,58,237,${.11 * (1 - d / 115)})`;
+          ctx.lineWidth = .4;
+          ctx.stroke();
+        }
+      }
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  resize(); init(); draw();
+  new ResizeObserver(() => { cancelAnimationFrame(raf); resize(); init(); draw(); }).observe(canvas);
+})();
+
+// Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>

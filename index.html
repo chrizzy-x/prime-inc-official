@@ -133,6 +133,7 @@ a{color:inherit;text-decoration:none}
 .ao::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.09) 0%,transparent 65%);pointer-events:none}
 .ao-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center;position:relative;z-index:1}
 .ao-lbl{font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+.ao-stack{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:48px}
 .ao-h{font-size:clamp(32px,4.5vw,64px);margin-bottom:14px}
 .ao-p{font-size:15px;font-weight:300;color:rgba(237,237,250,.52);max-width:560px;line-height:1.75}
 
@@ -257,6 +258,7 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
   .pr-in{grid-template-columns:72px 1fr auto}
   .ao{padding:80px 40px}
   .ao-in{grid-template-columns:1fr}
+  .ao-stack{grid-template-columns:1fr!important}
   .vi-pair{grid-template-columns:1fr;gap:20px;padding:52px 0}
   .rv-item{grid-template-columns:40px 1fr 1fr}
   .rv-item:hover{margin:0 -40px;padding:32px 40px}
@@ -389,9 +391,9 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
         <div class="co-sector" style="color:#10b981">Payment Infrastructure</div>
         <span class="co-st" style="color:#10b981;border-color:rgba(16,185,129,.3)">In development</span>
       </div>
-      <div class="co-desc">Universal payment protocol for humans and AI agents. USSD on any GSM phone. API for agents on any chain. One Prime Wallet, one PIN — online or offline. Designed with emerging markets as the primary constraint.</div>
+      <div class="co-desc">Three-layer payment infrastructure: Prime Wallet (one account, one PIN, online and offline), Prime Bridge (0.1% flat cross-chain transfers — Solana, Base, ETH, Monad), and Prime Pay Protocol (programmable payment rails for humans and AI agents via USSD on any GSM phone). Designed for emerging markets first.</div>
       <div class="co-tags">
-        <span class="ctag">USSD</span><span class="ctag">Agent API</span><span class="ctag">Prime Bridge</span>
+        <span class="ctag">Prime Wallet</span><span class="ctag">Prime Bridge</span><span class="ctag">Prime Pay Protocol</span>
       </div>
     </div>
   </div>
@@ -406,9 +408,9 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
         <div class="co-sector" style="color:#f59e0b">Hardware &amp; Energy</div>
         <span class="co-st" style="color:#f59e0b;border-color:rgba(245,158,11,.3)">Registered &amp; operational</span>
       </div>
-      <div class="co-desc">Solar energy products and hardware distribution across Nigeria. Reliable power is the physical foundation everything else Prime Inc builds depends on.</div>
+      <div class="co-desc">Solar energy systems, mobile devices, and Windows computers distributed across Nigeria. Physical infrastructure — power, mobile access, and computing — is the foundation the digital economy needs to exist.</div>
       <div class="co-tags">
-        <span class="ctag">Solar</span><span class="ctag">Hardware</span><span class="ctag">Nigeria</span>
+        <span class="ctag">Solar</span><span class="ctag">Mobile</span><span class="ctag">Windows</span><span class="ctag">Nigeria</span>
       </div>
     </div>
   </div>
@@ -533,16 +535,30 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
   </div>
 </section>
 
-<!-- AGENTOS BANNER -->
+<!-- THE STACK BANNER -->
 <div class="ao">
-  <div class="ao-in">
-    <div>
-      <div class="ao-lbl rv">Open Platform</div>
-      <h2 class="ao-h rv d1">AgentOS is open.</h2>
-      <p class="ao-p rv d2">Any developer or company in the world can build on AgentOS. Prime Labs products are the first builders on the stack — not the only ones.</p>
-    </div>
-    <div class="rv d3" style="display:flex;align-items:center">
-      <a href="https://agentos-app.vercel.app" class="btn-l" target="_blank" rel="noopener" style="font-size:13px;padding:14px 30px">Start Building</a>
+  <div class="c" style="position:relative;z-index:1">
+    <div class="ao-lbl rv">The Stack</div>
+    <h2 class="ao-h rv d1">Three companies. One infrastructure.</h2>
+    <div class="ao-stack rv d2">
+      <div style="padding:28px;border:1px solid var(--b);background:rgba(237,237,250,.015)">
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--pl);margin-bottom:10px">Prime Labs</div>
+        <div style="font-family:var(--fh);font-size:20px;letter-spacing:-.025em;margin-bottom:8px">AI &amp; Technology</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.7;margin-bottom:20px">Agent infrastructure, DeFi analytics, verified communities, autonomous trading, and the coordination protocol beneath it all.</div>
+        <a href="https://agentos-app.vercel.app" class="btn-l" target="_blank" rel="noopener" style="font-size:11px;padding:10px 20px">Launch AgentOS</a>
+      </div>
+      <div style="padding:28px;border:1px solid var(--b);background:rgba(237,237,250,.015)">
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:10px">Prime Pay</div>
+        <div style="font-family:var(--fh);font-size:20px;letter-spacing:-.025em;margin-bottom:8px">Payment Infrastructure</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.7;margin-bottom:20px">Prime Wallet, Prime Bridge, and Prime Pay Protocol — one account, one PIN, any surface. USSD to agent API.</div>
+        <a href="#pp" class="btn-ghost" style="font-size:11px;padding:10px 20px">Learn More</a>
+      </div>
+      <div style="padding:28px;border:1px solid var(--b);background:rgba(237,237,250,.015)">
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:10px">Prime Gadgets</div>
+        <div style="font-family:var(--fh);font-size:20px;letter-spacing:-.025em;margin-bottom:8px">Hardware &amp; Energy</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.7;margin-bottom:20px">Solar systems, mobile devices, and Windows computers across Nigeria. The physical infrastructure the digital economy runs on.</div>
+        <a href="#co" class="btn-ghost" style="font-size:11px;padding:10px 20px">View Companies</a>
+      </div>
     </div>
   </div>
 </div>
@@ -655,7 +671,7 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
-        <a href="#" class="fo-link">
+        <a href="https://x.com/primeinc_hq" class="fo-link" target="_blank" rel="noopener">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63L18.245 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           Twitter
         </a>
@@ -740,7 +756,7 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
         <ul>
           <li><a href="#fo">Founder</a></li>
           <li><a href="https://github.com/chrizzy-x" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="#">Twitter</a></li>
+          <li><a href="https://x.com/primeinc_hq" target="_blank" rel="noopener">Twitter</a></li>
         </ul>
       </div>
     </div>

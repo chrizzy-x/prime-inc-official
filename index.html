@@ -145,17 +145,6 @@ a{color:inherit;text-decoration:none}
 .vi-stmt em{font-style:normal;-webkit-text-stroke:1px rgba(237,237,250,.3);color:transparent}
 .vi-body{font-size:14px;font-weight:300;color:rgba(237,237,250,.5);line-height:1.8;padding-top:8px}
 
-/* ─── REVENUE ─── */
-#rv{padding:160px 0}
-.rv-hd{font-size:clamp(36px,5vw,68px);margin-bottom:80px}
-.rv-list{border-top:1px solid var(--b)}
-.rv-item{display:grid;grid-template-columns:52px 1fr 200px 120px;gap:40px;padding:32px 0;border-bottom:1px solid var(--b);align-items:center;transition:background .2s}
-.rv-item:hover{background:rgba(124,58,237,.03);margin:0 -60px;padding:32px 60px}
-.rv-n{font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(237,237,250,.22)}
-.rv-name{font-family:var(--fh);font-size:17px;letter-spacing:-.02em}
-.rv-desc{font-size:12px;font-weight:300;color:rgba(237,237,250,.45);line-height:1.65}
-.rv-co{font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--pl);text-align:right}
-
 /* ─── PRIME PAY ─── */
 #pp{padding:160px 0}
 .pp-hd{font-size:clamp(36px,5vw,68px);margin-bottom:12px}
@@ -260,9 +249,6 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
   .ao-in{grid-template-columns:1fr}
   .ao-stack{grid-template-columns:1fr!important}
   .vi-pair{grid-template-columns:1fr;gap:20px;padding:52px 0}
-  .rv-item{grid-template-columns:40px 1fr 1fr}
-  .rv-item:hover{margin:0 -40px;padding:32px 40px}
-  .rv-co{display:none}
   .pp-grid{grid-template-columns:1fr;gap:60px}
   .ffp-in{grid-template-columns:1fr}
   .ffp-rings{display:none}
@@ -272,18 +258,15 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
 }
 @media(max-width:768px){
   .c{padding:0 24px}
-  #co,.co-hd,.co-row,.pr-row,.ao,.rv-item:hover{padding-left:24px;padding-right:24px}
+  #co,.co-hd,.co-row,.pr-row,.ao{padding-left:24px;padding-right:24px}
   .nav-links{display:none}
   .h-scroll{display:none}
   .co-in{grid-template-columns:1fr;gap:16px}
   .pr-in{grid-template-columns:56px 1fr}
   .pr-in>*:last-child{grid-column:1/-1}
-  .rv-item{grid-template-columns:32px 1fr;gap:16px}
-  .rv-desc{display:none}
-  .rv-item:hover{margin:0;padding:32px 24px}
   .ft-grid{grid-template-columns:1fr;gap:28px}
   .ft-btm{flex-direction:column;gap:8px;text-align:center}
-  #co,#pr,#vi,#rv,#pp,#ffp,#fo,#ct{padding-top:100px}
+  #co,#pr,#vi,#pp,#ffp,#fo,#ct{padding-top:100px}
   .ao{margin-top:100px}
 }
 </style>
@@ -578,19 +561,6 @@ footer{padding:80px 0 40px;border-top:1px solid var(--b)}
       <div class="vi-stmt">Agents are the <em>architecture.</em></div>
       <div class="vi-body">Not a feature added to existing products. The coordination layer. AgentOS is open to any builder — the ecosystem wins together or not at all.</div>
     </div>
-  </div>
-</section>
-
-<!-- REVENUE -->
-<section id="rv" class="c">
-  <h2 class="rv-hd rv">Six revenue streams.</h2>
-  <div class="rv-list">
-    <div class="rv-item rv"><span class="rv-n">01</span><span class="rv-name">AgentOS Marketplace</span><span class="rv-desc">Skill listing fees and revenue share on paid skills transacted through the open marketplace.</span><span class="rv-co">Prime Labs</span></div>
-    <div class="rv-item rv d1"><span class="rv-n">02</span><span class="rv-name">AgentOS Enterprise</span><span class="rv-desc">Self-hosted licensing and support for organizations running AgentOS at scale.</span><span class="rv-co">Prime Labs</span></div>
-    <div class="rv-item rv d2"><span class="rv-n">03</span><span class="rv-name">deZypher Intelligence</span><span class="rv-desc">Premium subscriptions for FurgeScore and Narrative Mapper signals. No paid promotions.</span><span class="rv-co">Prime Labs</span></div>
-    <div class="rv-item rv d3"><span class="rv-n">04</span><span class="rv-name">SiloPerps Protocol</span><span class="rv-desc">Trading fees with fee-to-buyback-burn $SILO mechanism aligning protocol revenue with token value.</span><span class="rv-co">Prime Labs</span></div>
-    <div class="rv-item rv d4"><span class="rv-n">05</span><span class="rv-name">Prime Bridge Fee</span><span class="rv-desc">0.1% flat fee on every cross-chain transfer. No tiers. Solana, Base, ETH, Monad.</span><span class="rv-co">Prime Pay</span></div>
-    <div class="rv-item rv d5"><span class="rv-n">06</span><span class="rv-name">Hardware Sales</span><span class="rv-desc">Solar energy products and hardware distribution margins across Nigeria.</span><span class="rv-co">Prime Gadgets</span></div>
   </div>
 </section>
 
